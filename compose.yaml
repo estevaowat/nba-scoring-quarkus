@@ -1,5 +1,15 @@
 services:
-  app:
+  app1:
+    container_name: "nbascoring"
+    build:
+      dockerfile: src/main/docker/Dockerfile.jvm
+      context: .
+    depends_on:
+      - postgres
+      - kafka
+    ports:
+      - 8080:8080
+  app2:
     container_name: "nbascoring"
     build:
       dockerfile: src/main/docker/Dockerfile.jvm
