@@ -16,10 +16,15 @@ dependencies {
     //http
     implementation("io.quarkus:quarkus-rest")
     implementation("io.quarkus:quarkus-rest-jackson")
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.17.0")
+
+
+    // Hibernate Reactive dependency
+    implementation("io.quarkus:quarkus-hibernate-reactive-panache")
+
+    implementation("io.quarkus:quarkus-reactive-pg-client")
+
     //database
-    implementation("io.quarkus:quarkus-jdbc-postgresql")
-    implementation("io.quarkus:quarkus-hibernate-orm-panache")
-    // annotationProcessor("io.quarkus:quarkus-panache-common")
     implementation(enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}"))
 
     //messaging
@@ -33,6 +38,9 @@ dependencies {
 
     //testing
     testImplementation("io.quarkus:quarkus-junit5")
+    testImplementation("io.quarkus:quarkus-junit5-mockito")
+    testImplementation("io.quarkus:quarkus-panache-mock")
+    testImplementation("io.rest-assured:rest-assured")
     testImplementation("org.instancio:instancio-junit:4.5.1")
 }
 

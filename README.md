@@ -70,7 +70,6 @@ If you want to learn more about building native executables, please consult http
 
 - SmallRye Reactive Messaging - Kafka Connector ([guide](https://quarkus.io/guides/kafka-reactive-getting-started)):
   Connect to Kafka with Reactive Messaging
-- JDBC Driver - MySQL ([guide](https://quarkus.io/guides/datasource)): Connect to the MySQL database via JDBC
 
 ## Provided Code
 
