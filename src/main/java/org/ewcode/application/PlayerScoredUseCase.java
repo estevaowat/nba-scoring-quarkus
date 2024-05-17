@@ -2,8 +2,6 @@ package org.ewcode.application;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.quarkus.hibernate.reactive.panache.Panache;
-import io.smallrye.mutiny.Uni;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import org.ewcode.domain.Score;
@@ -25,15 +23,8 @@ public class PlayerScoredUseCase {
     }
 
     @Transactional
-    public void execute(String message) throws JsonProcessingException {
-        logger.info("converting score dto to entity");
-        Uni.createFrom().item(message)
-                .onItem()
-                .transform(toEntity(message))
-                .invoke(entity -> Panache.withTransaction(entity::persist))
-                .subscribe()
-                .with(entity -> logger.info("persisted score: " + entity),
-                        throwable -> logger.info("failed to persist score: " + throwable.getMessage()));
+    public void execute(String message) {
+        logger.info("converting score dto to entity " + message);
     }
 
     private Function<String, Score> toEntity(String message) {

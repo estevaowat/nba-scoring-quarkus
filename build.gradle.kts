@@ -17,10 +17,10 @@ dependencies {
     implementation("io.quarkus:quarkus-rest")
     implementation("io.quarkus:quarkus-rest-jackson")
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.17.0")
-
-
+    implementation("io.quarkus:quarkus-devservices-postgresql")
     // Hibernate Reactive dependency
     implementation("io.quarkus:quarkus-hibernate-reactive-panache")
+
 
     implementation("io.quarkus:quarkus-reactive-pg-client")
 

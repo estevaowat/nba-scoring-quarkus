@@ -1,6 +1,6 @@
 #!/bin/zsh
 docker compose down --remove-orphans
-./gradlew build
+./gradlew clean build
 docker compose up -d --build
 docker logs nbascoring1 -f
 

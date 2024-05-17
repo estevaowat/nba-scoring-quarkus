@@ -19,3 +19,4 @@ public class Score extends PanacheEntity {
         return points >= 0 && points <= 4;
     }
 }
+
