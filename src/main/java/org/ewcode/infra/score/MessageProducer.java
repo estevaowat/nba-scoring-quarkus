@@ -3,6 +3,8 @@ package org.ewcode.infra.score;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.enterprise.context.ApplicationScoped;
+import org.eclipse.microprofile.reactive.messaging.Channel;
+import org.eclipse.microprofile.reactive.messaging.Emitter;
 import org.ewcode.infra.score.dto.ScoreDTO;
 
 import java.time.LocalDateTime;
@@ -14,6 +16,10 @@ import java.util.stream.IntStream;
 public class MessageProducer {
 
     private final ObjectMapper objectMapper;
+
+    @Channel("player-scored")
+    Emitter<String> emitter;
+
 
     public MessageProducer(ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
