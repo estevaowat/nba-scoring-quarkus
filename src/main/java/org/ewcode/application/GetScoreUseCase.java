@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 public class GetScoreUseCase {
 
     public static final Logger logger = Logger.getLogger(GetScoreUseCase.class.getName());
+
     @Inject
     ReactiveMongoClient mongoClient;
 
@@ -35,6 +36,7 @@ public class GetScoreUseCase {
 
     public Uni<List<ScoreDTO>> execute() {
         logger.info("executing get score use case");
+
         return mongoClient.getDatabase("nbascoring")
                 .getCollection("score")
                 .find()

@@ -1,17 +1,18 @@
 package org.ewcode.infra.score;
 
 import io.quarkus.hibernate.reactive.panache.common.WithTransaction;
+import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.Uni;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.ewcode.application.GetScoreUseCase;
 import org.ewcode.application.PlayerScoredUseCase;
 import org.ewcode.domain.Score;
 import org.ewcode.infra.score.dto.ScoreDTO;
+import org.ewcode.infra.score.entities.ScoreMongoDB;
 import org.ewcode.infra.score.mappers.ScoreMapper;
+import org.jboss.resteasy.reactive.RestStreamElementType;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -62,8 +63,18 @@ public class ScoreController {
 
     @GET
     @Path("mongo")
-    public Uni<List<ScoreDTO>> get() {
-        logger.info("getting scores ");
-        return getScoreUseCase.execute();
+    public Uni<List<ScoreDTO>> get() throws Exception {
+        throw new BadRequestException("ops! error");
+
+
     }
+
+    @GET
+    @Path("mongo-multi")
+    @Produces(MediaType.SERVER_SENT_EVENTS)
+    @RestStreamElementType(MediaType.APPLICATION_JSON)
+    public Multi<ScoreMongoDB> getAll() {
+        return ScoreMongoDB.streamAll();
+    }
+
 }
